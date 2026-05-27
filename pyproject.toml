@@ -1,0 +1,51 @@
+[tool.workspace]
+members = [
+    "packages/videounit-core",
+    "packages/videounit-cli",
+    "packages/videounit-evaluators",
+    "packages/videounit-report",
+    "packages/videounit-healer",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.mypy]
+python-version = "3.12"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.1.0",
+    "black>=23.0",
+    "mypy>=1.0",
+]
+
+[tool.pdm.scripts]
+# Dev shortcuts
+lint = "ruff check packages/"
+format = "black packages/"
+test = "pytest tests/"
+build = "pdm build"

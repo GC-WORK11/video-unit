@@ -1,0 +1,7 @@
+videounit-core
+torch>=2.0
+numpy>=1.24
+opencv-python>=4.8
+pyscenendect>=0.5
+scikit-image>=0.21
+pillow>=10.0

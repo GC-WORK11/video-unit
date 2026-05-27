@@ -1,0 +1,5 @@
+setup.py
+depth_anything.egg-info/PKG-INFO
+depth_anything.egg-info/SOURCES.txt
+depth_anything.egg-info/dependency_links.txt
+depth_anything.egg-info/top_level.txt

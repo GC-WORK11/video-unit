@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ROCGPA_SceneGraph",
+  "description": "AETHER Studio SceneGraph schema",
+  "type": "object",
+  "properties": {
+    "scene_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "camera_intrinsics": { "$ref": "#/definitions/CameraIntrinsics" },
+    "objects": { "type": "array", "items": { "$ref": "#/definitions/ObjectNode" } },
+    "edges": { "type": "array", "items": { "$ref": "#/definitions/Edge" } },
+    "frame_source": { "type": "string" },
+    "reconstruction_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "schema_version": { "type": "string" }
+  },
+  "definitions": {
+    "CameraIntrinsics": {
+      "type": "object",
+      "properties": {
+        "fx": { "type": "number" },
+        "fy": { "type": "number" },
+        "cx": { "type": "number" },
+        "cy": { "type": "number" },
+        "distortion_coeffs": { "type": "array", "items": { "type": "number" } },
+        "resolution": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "ObjectNode": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "object_type": { "type": "string", "enum": ["rigid", "joint", "belt", "pulley", "rail", "frame"] },
+        "physics": { "type": "object" }
+      }
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "source_id": { "type": "string" },
+        "target_id": { "type": "string" },
+        "joint_type": { "type": "string" },
+        "contact_prob": { "type": "number" }
+      }
+    }
+  }
+}

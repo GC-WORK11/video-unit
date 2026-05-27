@@ -1,0 +1,65 @@
+# VideoUnit Test Contract: Person in Blue Jacket
+# Category: character_consistency
+
+version: "0.1"
+
+test:
+  id: "character_consistency_blue_jacket_001"
+  name: "Person in blue jacket"
+  category: "character_consistency"
+  difficulty: "medium"
+
+input:
+  prompt: "A man in a blue jacket picks up a yellow umbrella and opens it."
+  expected_duration: "8s"
+
+objects:
+  - id: person
+    name: "man"
+    attributes:
+      gender: "male"
+      clothing_color: "blue"
+
+  - id: jacket
+    name: "blue jacket"
+    attributes:
+      color: "blue"
+
+  - id: umbrella
+    name: "yellow umbrella"
+    attributes:
+      color: "yellow"
+      shape: "dome"
+
+assertions:
+  - type: object_exists
+    object: person
+    from: "0s"
+    to: "8s"
+
+  - type: object_color_constant
+    object: jacket
+    expected_color: "blue"
+    tolerance:
+      max_delta: 0.15
+
+  - type: object_exists
+    object: umbrella
+    from: "2s"
+    to: "8s"
+
+  - type: object_color_constant
+    object: umbrella
+    expected_color: "yellow"
+    tolerance:
+      max_delta: 0.15
+
+  - type: no_random_scene_cut
+
+  - type: no_temporal_flicker
+
+scoring:
+  weights:
+    character_consistency: 0.40
+    object_constancy: 0.30
+    scene_stability: 0.30

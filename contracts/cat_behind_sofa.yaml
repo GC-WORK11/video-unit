@@ -1,0 +1,67 @@
+# VideoUnit Test Contract: Cat Behind Sofa
+# Category: object_permanence
+
+version: "0.1"
+
+test:
+  id: "object_permanence_cat_sofa_001"
+  name: "Cat walks behind sofa"
+  category: "object_permanence"
+  difficulty: "easy"
+
+input:
+  prompt: "A cat walks behind a sofa and comes out the other side."
+  expected_duration: "5s"
+
+objects:
+  - id: cat
+    name: "cat"
+    attributes:
+      color: "varies"
+      shape: "animal"
+
+  - id: sofa
+    name: "sofa"
+    attributes:
+      color: "varies"
+      shape: "rectangle"
+
+assertions:
+  - type: object_exists
+    object: cat
+    from: "0s"
+    to: "5s"
+    tolerance:
+      max_missing_duration: "0.5s"
+
+  - type: object_exists
+    object: sofa
+    from: "0s"
+    to: "5s"
+
+  - type: no_object_teleportation
+    object: cat
+    tolerance:
+      max_instantaneous_distance: 50
+
+  - type: no_random_scene_cut
+
+  - type: motion_direction
+    object: cat
+    phase:
+      from: "0s"
+      to: "2.5s"
+      expected: "horizontal"
+
+  - type: motion_direction
+    object: cat
+    phase:
+      from: "2.5s"
+      to: "5s"
+      expected: "horizontal"
+
+scoring:
+  weights:
+    object_permanence: 0.40
+    motion: 0.30
+    scene_stability: 0.30

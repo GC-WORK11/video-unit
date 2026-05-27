@@ -1,0 +1,20 @@
+version: "0.1"
+test:
+  id: "simple_test_001"
+  name: "Simple Test"
+  category: "basic"
+  difficulty: "easy"
+input:
+  prompt: "A ball rolling"
+  expected_duration: "2s"
+objects:
+  - id: ball
+    name: "ball"
+assertions:
+  - type: object_exists
+    object: ball
+    from: "0s"
+    to: "2s"
+scoring:
+  weights:
+    object_permanence: 1.0

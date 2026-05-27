@@ -1,0 +1,82 @@
+# VideoUnit Test Contract: Red Ball Falls Into Glass
+# Category: object_permanence
+
+version: "0.1"
+
+test:
+  id: "object_permanence_red_ball_001"
+  name: "Red ball falls into glass"
+  category: "object_permanence"
+  difficulty: "medium"
+
+input:
+  prompt: "A red ball rolls off a wooden table and falls into a clear glass cup."
+  expected_duration: "6s"
+
+objects:
+  - id: ball
+    name: "red ball"
+    attributes:
+      color: "red"
+      shape: "sphere"
+
+  - id: table
+    name: "wooden table"
+    attributes:
+      color: "brown"
+      shape: "rectangle"
+
+  - id: glass
+    name: "clear glass cup"
+    attributes:
+      color: "transparent"
+      shape: "cylinder"
+
+assertions:
+  - type: object_exists
+    object: ball
+    from: "0s"
+    to: "6s"
+    tolerance:
+      max_missing_duration: "0.25s"
+
+  - type: object_color_constant
+    object: ball
+    expected_color: "red"
+    tolerance:
+      max_delta: 0.2
+
+  - type: object_count_constant
+    object: ball
+    expected_count: 1
+
+  - type: motion_direction
+    object: ball
+    phase:
+      from: "0s"
+      to: "3s"
+      expected: "mostly horizontal"
+
+  - type: motion_direction
+    object: ball
+    phase:
+      from: "3s"
+      to: "6s"
+      expected: "mostly downward"
+
+  - type: object_exists
+    object: glass
+    from: "0s"
+    to: "6s"
+
+  - type: no_random_scene_cut
+
+  - type: physical_plausibility
+    rule: "ball should not move upward after falling unless bouncing"
+
+scoring:
+  weights:
+    object_permanence: 0.30
+    motion: 0.25
+    physics: 0.25
+    prompt_adherence: 0.20

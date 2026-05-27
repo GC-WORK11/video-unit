@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: videounit-evaluators
+Version: 0.1.0
+Requires-Python: >=3.12
+Requires-Dist: videounit-core
+Requires-Dist: torch>=2.0
+Requires-Dist: numpy>=1.24
+Requires-Dist: opencv-python>=4.8
+Requires-Dist: pyscenendect>=0.5
+Requires-Dist: scikit-image>=0.21
+Requires-Dist: pillow>=10.0

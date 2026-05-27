@@ -1,0 +1,50 @@
+{
+  "run_id": "demo_red_ball_001",
+  "overall": 72.5,
+  "categories": {
+    "object_exists": 85.0,
+    "motion_direction": 68.0,
+    "color_constant": 90.0,
+    "no_random_scene_cut": 100.0,
+    "temporal_flicker": 70.0
+  },
+  "scores": {},
+  "num_failures": 3,
+  "failures": [
+    {
+      "timestamp": "00:01.32",
+      "frame_number": 40,
+      "type": "low_confidence",
+      "severity": "warning",
+      "message": "Object 'red_ball' detection confidence dropped below 0.5 at frame 40",
+      "object": "red_ball",
+      "suggested_fix": "Improve lighting or contrast for better object detection"
+    },
+    {
+      "timestamp": "00:02.85",
+      "frame_number": 86,
+      "type": "object_missing",
+      "severity": "fail",
+      "message": "Object 'red_ball' disappeared for 12 consecutive frames (0.4s) - expected continuous tracking",
+      "object": "red_ball",
+      "suggested_fix": "Ensure object remains in frame without occlusion"
+    },
+    {
+      "timestamp": "00:04.12",
+      "frame_number": 124,
+      "type": "motion_anomaly",
+      "severity": "warning",
+      "message": "Motion trajectory deviates 23% from expected parabolic path",
+      "object": "red_ball",
+      "suggested_fix": "Verify physics simulation parameters match expected motion"
+    }
+  ],
+  "passed_count": 0,
+  "timestamp": "2026-05-13T18:30:00Z",
+  "video_duration": null,
+  "contract": {
+    "name": "Red Ball Rolling",
+    "assertions": 4,
+    "duties": []
+  }
+}
